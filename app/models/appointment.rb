@@ -1,10 +1,11 @@
 class Appointment
   include Mongoid::Document
   field :client_name, type: String
+  field :client_id, type: BSON::ObjectId
   field :driver, type: String
   field :time, type: DateTime
 
-  validates_presence_of :client_name, :driver, :time
+  validates_presence_of :client_name, :client_id, :driver, :time
   validates_inclusion_of :driver, in: ['fullweek', 'weekdays']
   validate :must_be_unique_in_interval
 
