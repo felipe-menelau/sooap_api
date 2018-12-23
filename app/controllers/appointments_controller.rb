@@ -1,4 +1,6 @@
 class AppointmentsController < ApplicationController
+  before_action :validate_params, only: [:create]
+
   def create
     time = DateTime.parse(time_params[:time])
     appointment = create_appointment(time)
@@ -6,7 +8,7 @@ class AppointmentsController < ApplicationController
     if appointment.save
       render json: { appointment: serialize_appointment(appointment) }, status: :created
     else
-      render json: { error: 'no drivers available at that time' }, status: :unprocessable_entity
+      render_error
     end
   end
 
@@ -37,5 +39,13 @@ class AppointmentsController < ApplicationController
       client_name: appointment.client_name,
       time: appointment.time
     }
+  end
+
+  def render_error
+    render json: { error: 'no drivers available at that time' }, status: :unprocessable_entity
+  end
+
+  def validate_params
+    render_error unless time_params[:time]
   end
 end
