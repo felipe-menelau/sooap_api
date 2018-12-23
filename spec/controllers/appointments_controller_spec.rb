@@ -37,4 +37,12 @@ RSpec.describe AppointmentsController, type: :controller do
       expect(Appointment.count).to eq(2)
     end
   end
+  describe 'GET index' do
+    it 'should list all appointments' do
+      Appointment.create(client_name: 'Carlos', client_id: @user.id, driver: 'fullweek', time: '2018-12-25T19:20')
+      get(:index)
+      expect(response.status).to eq(200)
+      expect(JSON.parse(response.body)['appointments'].size).to eq(1)
+    end
+  end
 end
