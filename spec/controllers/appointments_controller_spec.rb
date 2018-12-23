@@ -37,12 +37,22 @@ RSpec.describe AppointmentsController, type: :controller do
       expect(Appointment.count).to eq(2)
     end
   end
+
   describe 'GET index' do
     it 'should list all appointments' do
       Appointment.create(client_name: 'Carlos', client_id: @user.id, driver: 'fullweek', time: '2018-12-25T19:20')
       get(:index)
       expect(response.status).to eq(200)
       expect(JSON.parse(response.body)['appointments'].size).to eq(1)
+    end
+  end
+
+  describe 'DELTE delete' do
+    it 'should delete existing appointment' do
+      appointment = Appointment.create(client_name: 'Carlos', client_id: @user.id, driver: 'fullweek', time: '2018-12-25T19:20')
+      delete(:destroy, :params => {:id => appointment.id.to_s})
+      expect(response.status).to eq(204)
+      expect(Appointment.count).to eq(0)
     end
   end
 end
