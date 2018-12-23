@@ -6,6 +6,8 @@ ruby '2.5.1'
 gem 'rails', '~> 5.2.2'
 gem 'puma', '~> 3.11'
 gem 'mongoid', '~> 7.0'
+gem 'bcrypt'
+gem 'jwt'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 
