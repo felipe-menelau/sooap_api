@@ -6,6 +6,8 @@ class User
   field :email, type: String
   field :password_digest, type: String
 
+  validates_presence_of :name, :email, :password
+
   def password
     @password ||= Password.new(password_digest)
   end
