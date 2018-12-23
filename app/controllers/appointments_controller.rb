@@ -17,6 +17,16 @@ class AppointmentsController < ApplicationController
     end
   end
 
+  def destroy
+    appointment = Appointment.find(params[:id])
+    if appointment
+      appointment.destroy
+      render nothing: true, status: :no_content
+    else
+      render json: { error: 'appointment not found' }, status: :not_found
+    end
+  end
+
   private
 
   def time_params
@@ -41,6 +51,7 @@ class AppointmentsController < ApplicationController
 
   def serialize_appointment(appointment)
     {
+      id: appointment.id,
       client_name: appointment.client_name,
       time: appointment.time
     }
