@@ -7,5 +7,11 @@ RSpec.describe UsersController, type: :controller do
       post(:create, :params => params)
       expect(response.status).to eq(201)
     end
+
+    it 'shouldnt create user when params are invalid' do
+      params = { name: 'Carlos', :password => '123123123'}
+      post(:create, :params => params)
+      expect(response.status).to eq(422)
+    end
   end
 end
