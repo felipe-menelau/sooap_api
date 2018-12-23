@@ -7,8 +7,8 @@ RSpec.describe LoginController, type: :controller do
     end
 
     it 'should login with valid params' do
-      params = {email: 'exemple@mail.com', password: '123123123'}
-      post(:login, params)
+      params = {:email => 'example@mail.com', :password => '123123123'}
+      post(:login, :params => params)
       expect(response.status).to eq(200)
     end
   end
