@@ -31,14 +31,14 @@ RSpec.describe Appointment, :type => :model do
   end
 
   it 'isnt valid when appointment with same driver exists in a half-hour interval' do
-    Appointment.create(client_name: 'Carlos', client_id: @user.id, driver: 'weekdays', time: DateTime.now)
-    appointment = Appointment.new(client_name: 'Ricardo', client_id: @user.id, driver: 'weekdays', time: DateTime.now)
+    Appointment.create(client_name: 'Carlos', client_id: @user.id, driver: 'fullweek', time: DateTime.now)
+    appointment = Appointment.new(client_name: 'Ricardo', client_id: @user.id, driver: 'fullweek', time: DateTime.now)
     expect(appointment).to_not be_valid
   end
 
   it 'should create 2 appointments for the same driver if they are more then half-hour apart' do
-    Appointment.create(client_name: 'Carlos', client_id: @user.id, driver: 'weekdays', time: DateTime.now)
-    Appointment.create(client_name: 'Ricardo', client_id: @user.id, driver: 'weekdays', time: DateTime.now + 50.minutes)
+    Appointment.create(client_name: 'Carlos', client_id: @user.id, driver: 'fullweek', time: DateTime.now)
+    Appointment.create(client_name: 'Ricardo', client_id: @user.id, driver: 'fullweek', time: DateTime.now + 50.minutes)
     expect(Appointment.count).to eq(2)
   end
 end
