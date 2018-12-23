@@ -31,4 +31,10 @@ RSpec.describe Appointment, :type => :model do
     appointment = Appointment.new(client_name: 'Ricardo', driver: 'weekdays', time: DateTime.now)
     expect(appointment).to_not be_valid
   end
+
+  it 'should create 2 appointments for the same driver if they are more then half-hour apart' do
+    Appointment.create(client_name: 'Carlos', driver: 'weekdays', time: DateTime.now)
+    Appointment.create(client_name: 'Ricardo', driver: 'weekdays', time: DateTime.now + 50.minutes)
+    expect(Appointment.count).to eq(2)
+  end
 end
