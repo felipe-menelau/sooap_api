@@ -1,6 +1,11 @@
 class AppointmentsController < ApplicationController
   before_action :validate_params, only: [:create]
 
+  def index
+    appointments = Appointment.where(client_id: current_user.id)
+    render json: { appointments: appointments.map { |appo| serialize_appointment(appo) } }
+  end
+
   def create
     time = DateTime.parse(time_params[:time])
     appointment = create_appointment(time)
