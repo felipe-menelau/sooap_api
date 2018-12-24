@@ -27,6 +27,12 @@ Após isso pode começar a usar. Um bom primeiro passo é o cadastro:
 
 Mais informações sobre uso da API na documentação no [Apiary](https://sooapapi.docs.apiary.io/).
 
+## Testes
+
+O projeto usa *Rspec* para implementar a suite de testes. Para rodar basta executar o comando a seguir enquanto estiver na raiz do projeto
+
+` rspec `
+
 # LICENSE
 
 Sooap API roda sob a [MIT License](https://opensource.org/licenses/MIT)
