@@ -1,24 +1,17 @@
-# README
+# Sooap Api
+**Ruby 2.5.1**
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+**Rails 5.2.2**
 
-Things you may want to cover:
+**MongoDB 4.0.4**
 
-* Ruby version
+Essa API permite que o usuário se cadastre, faça login e possa listar, criar e apagar agendamentos. Para mais informações consultar Documentação no [Apiary](https://sooapapi.docs.apiary.io/).
 
-* System dependencies
+# Como rodar
+Após instalar as depêndencias citadas acima, rode ` bundle install ` para instalar o resto das depêndencias. Recomendo usar o mongo no Docker, para não haver conflitos com outras versões locais, usando o comando: `sudo docker run -d -p 27017:27017 -v ~/data:/data/db mongo:4.0.4`
 
-* Configuration
+Após isso, rode o servidor com `rails s` e pode começar a usar. Um bom primeiro passo é o cadastro:
 
-* Database creation
+`curl -d '{"email":"exemplo@gmail.com", "name":"Nome da Pessoa", "password": "senha"}' -H "Content-Type: application/json" -X POST http://localhost:3000/sign_up`
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Mais informações sobre uso da API na documentação no [Apiary](https://sooapapi.docs.apiary.io/).
